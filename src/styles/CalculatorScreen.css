@@ -1,0 +1,11 @@
+.calculator-screen {
+    width:100%;
+    background: grey;
+    border: solid 1px #000;
+}
+.calculator-screen__output {
+    color: white;
+    font-size: 2em;
+    text-align: right;
+    padding: 0.5em;
+}
