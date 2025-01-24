@@ -1,7 +1,9 @@
-function CalculatorButton({ type, className, text, value }) {
+function CalculatorButton({ btnData, handleClick }) {
+
+
   return (
-    <button className={className} type={type} value={value}>
-      {text}
+    <button className={btnData.className} type={btnData.type} value={btnData.value} onClick={() => handleClick(btnData)}>
+      {btnData.text}
     </button>
   );
 }
