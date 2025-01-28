@@ -11,6 +11,7 @@ function App() {
   const [storedNumber, setStoredNumber] = useState(null);
   const [operation, setOperation] = useState(null);
   const [newNumber, setNewNumber] = useState(true);
+  const [memory, setMemory] = useState('0');
 
   const handleOperator = (operator) => {
     if (operation && !newNumber) {
@@ -19,6 +20,19 @@ function App() {
 
     setOperation(operator);
     setStoredNumber(display);
+    setNewNumber(true);
+  };
+
+  const handleSquareRoot = () => {
+    const number = parseFloat(display);
+    const result = number >= 0 ? Math.sqrt(number) : 'Error';
+    setDisplay(result.toString());
+  };
+
+  const handlePercent = () => {
+    const number = parseFloat(display);
+    const result = number / 100;
+    setDisplay(result.toString());
     setNewNumber(true);
   };
 
@@ -78,6 +92,40 @@ function App() {
     setNewNumber(true);
   };
 
+  const handleMemory = (memoryType) => {
+    switch (memoryType) {
+      case 'Memory Save':
+        setMemory(display);
+        break;
+      case 'Memory Clear':
+        setMemory('0');
+        break;
+      case 'Memory Recall':
+        setDisplay(memory);
+        break;
+      case 'Memory Addition':
+        if (memory !== null) {
+          const result = parseFloat(display) + parseFloat(memory);
+          setMemory(result.toString());
+        } else {
+          setMemory(display);
+        }
+        setNewNumber(true);
+        break;
+      case 'Memory Subtract':
+        if (memory !== null) {
+          const result = parseFloat(memory) - parseFloat(display);
+          setMemory(result.toString());
+        } else {
+          setMemory(`-${display}`);
+        }
+        setNewNumber(true);
+        break;
+      default:
+        return;
+    }
+  };
+
   const handleClick = (btnData) => {
     console.log(btnData.value);
 
@@ -96,6 +144,15 @@ function App() {
         break;
       case 'sign':
         handleSign();
+        break;
+      case 'sqrt':
+        handleSquareRoot();
+        break;
+      case 'percent':
+        handlePercent();
+        break;
+      case 'memory':
+        handleMemory(btnData.value);
         break;
       default:
         return;
