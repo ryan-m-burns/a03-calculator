@@ -1,9 +1,9 @@
-import "../styles/CalculatorScreen.css";
+import '../styles/CalculatorScreen.css';
 
-export default function CalculatorScreen({ displayValue }) {
+export default function CalculatorScreen({ display }) {
   return (
     <div className="calculator-screen">
-      <div className="calculator-screen__output">{displayValue}</div>
+      <div className="calculator-screen__output">{display}</div>
     </div>
   );
 }

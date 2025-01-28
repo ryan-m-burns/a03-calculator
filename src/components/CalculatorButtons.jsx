@@ -1,6 +1,6 @@
-import CalculatorButton from "./CalculatorButton";
+import CalculatorButton from './CalculatorButton';
 
-export default function CalculatorButtons ({ buttons, handleClick }) {
+export default function CalculatorButtons({ buttons, handleClick }) {
   return (
     <div className="calculator-buttons">
       {buttons.map((button) => (
@@ -8,9 +8,7 @@ export default function CalculatorButtons ({ buttons, handleClick }) {
           key={button.text}
           btnData={button}
           handleClick={handleClick}
-        >
-          {button.text}
-        </CalculatorButton>
+        />
       ))}
     </div>
   );
