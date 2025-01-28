@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { calculatorButtons } from '../assets/calculator-base-button-data';
+import { calculatorButtons } from '../assets/calculator-bonus-03-button-data.js';
 import '../styles/App.css';
 import CalculatorScreen from './CalculatorScreen.jsx';
 import Header from './Header.jsx';
@@ -22,7 +22,13 @@ function App() {
     setNewNumber(true);
   };
 
+  const handleSign = () => {
+    setDisplay((parseFloat(display) * -1).toString());
+  };
+
   const handleNumber = (number) => {
+    if (number === '.' && display.includes('.')) return;
+
     if (newNumber) {
       setDisplay(number.toString());
       setNewNumber(false);
@@ -74,14 +80,25 @@ function App() {
 
   const handleClick = (btnData) => {
     console.log(btnData.value);
-    if (btnData.type === 'operator') {
-      handleOperator(btnData.value);
-    } else if (btnData.type === 'number') {
-      handleNumber(btnData.value);
-    } else if (btnData.type === 'clear') {
-      handleClear(btnData.value);
-    } else if (btnData.type === 'enter') {
-      calculateResult();
+
+    switch (btnData.type) {
+      case 'operator':
+        handleOperator(btnData.value);
+        break;
+      case 'number':
+        handleNumber(btnData.value);
+        break;
+      case 'clear':
+        handleClear(btnData.value);
+        break;
+      case 'enter':
+        calculateResult();
+        break;
+      case 'sign':
+        handleSign();
+        break;
+      default:
+        return;
     }
   };
 

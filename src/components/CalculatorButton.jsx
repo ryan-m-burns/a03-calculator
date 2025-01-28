@@ -20,8 +20,9 @@ function CalculatorButton({ btnData, handleClick }) {
 
   return (
     <button
-      className={`${addBootstrapCSS(btnData.type)} ${btnData.className || ''}`}
-      type="button"
+      className={`${addBootstrapCSS(btnData.type)} ${btnData.className}`}
+      type={btnData.type}
+      style={{ gridArea: btnData.className }}
       value={btnData.value}
       onClick={() => handleClick(btnData)}
     >
